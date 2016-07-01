@@ -45,7 +45,8 @@ server {
 	
 	
     	location / {
-        	index index.php  index.html index.htm;
+    		try_files $uri $uri/ /index.php?$args;
+        	# index index.php  index.html index.htm;
     	}
 	
 	# pass the PHP scripts to PHP-FPM
@@ -53,6 +54,7 @@ server {
     		fastcgi_pass unix:<%= ENV['OPENSHIFT_PHP_SOCKET'] %>;
     		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
     		fastcgi_param PATH_INFO $fastcgi_script_name;
+    		fastcgi_param  HTTP_MOD_REWRITE  On;
     		include <%= ENV['OPENSHIFT_PHP_DIR'] %>/usr/conf/fastcgi_params;
 	}
 }
