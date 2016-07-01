@@ -1,4 +1,3 @@
-
 Name: nginx-php
 Cartridge-Short-Name: PHP
 Display-Name: Nginx and PHP
